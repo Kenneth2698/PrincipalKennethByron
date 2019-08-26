@@ -19,6 +19,7 @@ public class BackendKennethLopezByronOrtiz {
     public static void main(String[] args) {
         PostgreConnection p = new PostgreConnection();
         p.select();
+         p.select();
         //p.insertar();
         
     }
