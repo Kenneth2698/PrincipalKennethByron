@@ -5,22 +5,31 @@
  */
 package backendkennethlopezbyronortiz;
 
-import Data.PostgreConnection;
-import java.sql.*;
+import GUI.MainWindow;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Kenneth
  */
 public class BackendKennethLopezByronOrtiz {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
-        PostgreConnection p = new PostgreConnection();
-        p.select();
-         p.select();
-        //p.insertar();
+        JFrame jFrame = new JFrame("Sistema administrativo");
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        jFrame.setPreferredSize(new Dimension(610, 625));
+
+        jFrame.add(new MainWindow());
+    
+        jFrame.pack();
+
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setResizable(false);
+
+        jFrame.setVisible(true);
         
     }
     
