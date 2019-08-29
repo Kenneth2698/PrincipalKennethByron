@@ -17,8 +17,11 @@ public class ManageProductWindow extends javax.swing.JFrame {
     /**
      * Creates new form ManageProductWindow
      */
-    public ManageProductWindow() {
+    private int id_provider;
+    public ManageProductWindow(int id_provider) {
         initComponents();
+        //this.id_provider = id_provider;
+        //JOptionPane.showMessageDialog(null,id_provider);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
@@ -36,10 +39,6 @@ public class ManageProductWindow extends javax.swing.JFrame {
 
         jPanel4 = new javax.swing.JPanel();
         welcomeLb3 = new javax.swing.JLabel();
-        manageProductBtn3 = new javax.swing.JButton();
-        exitBtn3 = new javax.swing.JButton();
-        selectLb3 = new javax.swing.JLabel();
-        providerComboBox3 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,66 +48,23 @@ public class ManageProductWindow extends javax.swing.JFrame {
         welcomeLb3.setBackground(new java.awt.Color(255, 255, 255));
         welcomeLb3.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         welcomeLb3.setForeground(new java.awt.Color(255, 255, 255));
-        welcomeLb3.setText("Sistema administrativo");
-
-        manageProductBtn3.setBackground(new java.awt.Color(0, 102, 204));
-        manageProductBtn3.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
-        manageProductBtn3.setForeground(new java.awt.Color(0, 0, 0));
-        manageProductBtn3.setText("Administrar productos");
-        manageProductBtn3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageProductBtn3ActionPerformed(evt);
-            }
-        });
-
-        exitBtn3.setBackground(new java.awt.Color(0, 102, 204));
-        exitBtn3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
-        exitBtn3.setForeground(new java.awt.Color(0, 0, 0));
-        exitBtn3.setText("Salir");
-
-        selectLb3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        selectLb3.setText("Seleccione el proveedor");
-
-        providerComboBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                providerComboBox3ActionPerformed(evt);
-            }
-        });
+        welcomeLb3.setText("Lista de productos");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(welcomeLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(exitBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageProductBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(providerComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(211, 211, 211))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(selectLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(201, 201, 201))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(164, Short.MAX_VALUE)
+                .addComponent(welcomeLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addGap(36, 36, 36)
                 .addComponent(welcomeLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(selectLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(providerComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(manageProductBtn3)
-                .addGap(27, 27, 27)
-                .addComponent(exitBtn3)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(494, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,14 +80,6 @@ public class ManageProductWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void manageProductBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductBtn3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_manageProductBtn3ActionPerformed
-
-    private void providerComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_providerComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_providerComboBox3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,7 +111,7 @@ public class ManageProductWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageProductWindow().setVisible(true);
+                new ManageProductWindow(0).setVisible(true);
             }
         });
     }
@@ -172,7 +120,6 @@ public class ManageProductWindow extends javax.swing.JFrame {
     private javax.swing.JButton exitBtn;
     private javax.swing.JButton exitBtn1;
     private javax.swing.JButton exitBtn2;
-    private javax.swing.JButton exitBtn3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -180,15 +127,12 @@ public class ManageProductWindow extends javax.swing.JFrame {
     private javax.swing.JButton manageProductBtn;
     private javax.swing.JButton manageProductBtn1;
     private javax.swing.JButton manageProductBtn2;
-    private javax.swing.JButton manageProductBtn3;
     private javax.swing.JComboBox<Provider> providerComboBox;
     private javax.swing.JComboBox<Provider> providerComboBox1;
     private javax.swing.JComboBox<Provider> providerComboBox2;
-    private javax.swing.JComboBox<Provider> providerComboBox3;
     private javax.swing.JLabel selectLb;
     private javax.swing.JLabel selectLb1;
     private javax.swing.JLabel selectLb2;
-    private javax.swing.JLabel selectLb3;
     private javax.swing.JLabel welcomeLb;
     private javax.swing.JLabel welcomeLb1;
     private javax.swing.JLabel welcomeLb2;
