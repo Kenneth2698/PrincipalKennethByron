@@ -5,8 +5,16 @@
  */
 package GUI;
 
+import Business.ProductBusiness;
+import Domain.Product;
 import Domain.Provider;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -14,18 +22,17 @@ import javax.swing.JFrame;
  */
 public class ManageProductWindow extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ManageProductWindow
-     */
-    private int id_provider;
-    public ManageProductWindow(int id_provider) {
+   
+    private Provider provider;
+    
+    private ProductBusiness productBusiness;
+    private ArrayList<Product> productList;
+
+    public ManageProductWindow(Provider provider) {
         initComponents();
-        //this.id_provider = id_provider;
-        //JOptionPane.showMessageDialog(null,id_provider);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.provider = provider;
+        this.welcomeLb3.setText(this.welcomeLb3.getText()+" de "+this.provider.getName());
+        this.init();
     }
 
     /**
@@ -39,6 +46,8 @@ public class ManageProductWindow extends javax.swing.JFrame {
 
         jPanel4 = new javax.swing.JPanel();
         welcomeLb3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        productTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,23 +57,45 @@ public class ManageProductWindow extends javax.swing.JFrame {
         welcomeLb3.setBackground(new java.awt.Color(255, 255, 255));
         welcomeLb3.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         welcomeLb3.setForeground(new java.awt.Color(255, 255, 255));
-        welcomeLb3.setText("Lista de productos");
+        welcomeLb3.setText("Productos ");
+
+        productTable.setBackground(new java.awt.Color(0, 153, 204));
+        productTable.setRowHeight(30);
+        productTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                productTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(productTable);
+        if (productTable.getColumnModel().getColumnCount() > 0) {
+            productTable.getColumnModel().getColumn(0).setHeaderValue("ID");
+            productTable.getColumnModel().getColumn(1).setHeaderValue("NOMBRE");
+            productTable.getColumnModel().getColumn(2).setHeaderValue("DESCRIPCIÓN");
+            productTable.getColumnModel().getColumn(3).setHeaderValue("PRECIO");
+            productTable.getColumnModel().getColumn(4).setHeaderValue("ACCIÓN");
+        }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
-                .addComponent(welcomeLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(welcomeLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addComponent(welcomeLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(494, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -81,9 +112,69 @@ public class ManageProductWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void productTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productTableMouseClicked
+        int column = this.productTable.getColumnModel().getColumnIndexAtX(evt.getX());
+        int row = evt.getY()/this.productTable.getRowHeight();
+        
+        Object value = this.productTable.getValueAt(row, column);
+        if(value instanceof JButton){
+            ((JButton) value).doClick();
+            JButton boton = (JButton) value;
+            if(boton.getName().equals("1")){
+               this.productBusiness.updateProductStatus(this.provider.getId(),(int)this.productTable.getValueAt(row, 0),0);
+            }else{
+                this.productBusiness.updateProductStatus(this.provider.getId(),(int)this.productTable.getValueAt(row, 0),1);
+            }
+            this.init();
+        }
+    }//GEN-LAST:event_productTableMouseClicked
+
     /**
      * @param args the command line arguments
      */
+    
+    public void init() {
+        this.productBusiness = new ProductBusiness();
+        this.productList = new ArrayList<>();
+        this.productList = this.productBusiness.getProducts(this.provider);
+        this.productTable.setDefaultRenderer(Object.class, new Render());
+        
+        
+       JButton ocultar;
+       DefaultTableModel d = new DefaultTableModel(
+               null,
+               new Object[] {"ID","NOMBRE","DESCRIPCION","PRECIO","ACCION"}
+       ){
+           public boolean isCellEditable(int row, int column){
+               return false;
+           }
+       }
+        ;
+       this.productTable.setModel(d);
+        
+      
+        DefaultTableModel model = (DefaultTableModel) this.productTable.getModel();
+        for (int i = 0; i < this.productList.size(); i++) {
+            Product p = this.productList.get(i);
+            
+            if(p.getStatus()==1){
+                ocultar  = new JButton("Ocultar");
+            }else{
+                ocultar  = new JButton("Mostrar");
+            }
+            
+            ocultar.setName(String.valueOf(p.getStatus()));
+            model.addRow(new Object[]{p.getId(),p.getName(), p.getDescription(),p.getPrice(),ocultar});
+        }
+        
+       
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -111,31 +202,15 @@ public class ManageProductWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageProductWindow(0).setVisible(true);
+                new ManageProductWindow(new Provider()).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton exitBtn;
-    private javax.swing.JButton exitBtn1;
-    private javax.swing.JButton exitBtn2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JButton manageProductBtn;
-    private javax.swing.JButton manageProductBtn1;
-    private javax.swing.JButton manageProductBtn2;
-    private javax.swing.JComboBox<Provider> providerComboBox;
-    private javax.swing.JComboBox<Provider> providerComboBox1;
-    private javax.swing.JComboBox<Provider> providerComboBox2;
-    private javax.swing.JLabel selectLb;
-    private javax.swing.JLabel selectLb1;
-    private javax.swing.JLabel selectLb2;
-    private javax.swing.JLabel welcomeLb;
-    private javax.swing.JLabel welcomeLb1;
-    private javax.swing.JLabel welcomeLb2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable productTable;
     private javax.swing.JLabel welcomeLb3;
     // End of variables declaration//GEN-END:variables
 }

@@ -159,7 +159,7 @@ public class MainWindow extends javax.swing.JPanel implements ActionListener{
              
               Provider p = (Provider)this.providerComboBox.getSelectedItem();
               if(p!=null){
-                  ManageProductWindow m = new  ManageProductWindow(p.getId());
+                  ManageProductWindow m = new  ManageProductWindow(p);
               }else{
                   JOptionPane.showMessageDialog(null,"No existen proveedores");
               }
