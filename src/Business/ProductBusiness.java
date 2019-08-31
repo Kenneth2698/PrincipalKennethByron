@@ -6,6 +6,7 @@
 package Business;
 
 import Data.PostgreConnection;
+import Domain.Product;
 import Domain.Provider;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,11 +26,14 @@ public class ProductBusiness {
         this.postgreConnection = new PostgreConnection();
     }
     
-    public void select(){
-        this.postgreConnection.select();
-    }
-    
     public ArrayList<Provider> getProviders(){
        return this.postgreConnection.getProviders();
     }
+    
+     public ArrayList<Product> getProducts(Provider pro){
+         return this.postgreConnection.getProducts(pro);
+     }
+     public void updateProductStatus(int providerI  ,int productId ,int status){
+         this.postgreConnection.updateProductStatus(providerI, productId, status);
+     }
 }

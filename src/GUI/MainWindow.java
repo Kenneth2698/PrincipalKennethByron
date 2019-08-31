@@ -7,15 +7,10 @@ package GUI;
 
 import Business.ProductBusiness;
 import Domain.Provider;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.util.ArrayList;
-import javafx.scene.control.ComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -161,12 +156,14 @@ public class MainWindow extends javax.swing.JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
          if (ae.getSource().equals(manageProductBtn)) {
-             ManageProductWindow m = new  ManageProductWindow();
-             /* Provider p = (Provider)this.providerComboBox.getSelectedItem();
+             
+              Provider p = (Provider)this.providerComboBox.getSelectedItem();
               if(p!=null){
-                  System.out.println(p.getId());
+                  ManageProductWindow m = new  ManageProductWindow(p);
+              }else{
+                  JOptionPane.showMessageDialog(null,"No existen proveedores");
               }
-              */
+              
          }
          
          if (ae.getSource().equals(exitBtn)) {
