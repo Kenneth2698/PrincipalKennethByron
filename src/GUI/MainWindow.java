@@ -16,25 +16,26 @@ import javax.swing.JOptionPane;
  *
  * @author Kenneth
  */
-public class MainWindow extends javax.swing.JPanel implements ActionListener{
+public class MainWindow extends javax.swing.JPanel implements ActionListener {
 
     /**
      * Creates new form MainWindow
      */
-    
     private ProductBusiness productBusiness;
+
     public MainWindow() {
         initComponents();
-        
+
         this.productBusiness = new ProductBusiness();
         ArrayList<Provider> list = this.productBusiness.getProviders();
         for (int i = 0; i < list.size(); i++) {
-           this.providerComboBox.addItem(list.get(i));
+            this.providerComboBox.addItem(list.get(i));
         }
-        
-        this.manageProductBtn.addActionListener(this);
+
+        this.manageProductBtn1.addActionListener(this);
+        this.manageCodeBtn.addActionListener(this);
         this.exitBtn.addActionListener(this);
-        
+
     }
 
     /**
@@ -48,10 +49,11 @@ public class MainWindow extends javax.swing.JPanel implements ActionListener{
 
         jPanel1 = new javax.swing.JPanel();
         welcomeLb = new javax.swing.JLabel();
-        manageProductBtn = new javax.swing.JButton();
+        manageCodeBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         selectLb = new javax.swing.JLabel();
         providerComboBox = new javax.swing.JComboBox<>();
+        manageProductBtn1 = new javax.swing.JButton();
 
         setForeground(new java.awt.Color(0, 0, 255));
 
@@ -63,13 +65,13 @@ public class MainWindow extends javax.swing.JPanel implements ActionListener{
         welcomeLb.setForeground(new java.awt.Color(255, 255, 255));
         welcomeLb.setText("Sistema administrativo");
 
-        manageProductBtn.setBackground(new java.awt.Color(0, 102, 204));
-        manageProductBtn.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
-        manageProductBtn.setForeground(new java.awt.Color(0, 0, 0));
-        manageProductBtn.setText("Administrar productos");
-        manageProductBtn.addActionListener(new java.awt.event.ActionListener() {
+        manageCodeBtn.setBackground(new java.awt.Color(0, 102, 204));
+        manageCodeBtn.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
+        manageCodeBtn.setForeground(new java.awt.Color(0, 0, 0));
+        manageCodeBtn.setText("Administrar códigos");
+        manageCodeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageProductBtnActionPerformed(evt);
+                manageCodeBtnActionPerformed(evt);
             }
         });
 
@@ -87,6 +89,16 @@ public class MainWindow extends javax.swing.JPanel implements ActionListener{
             }
         });
 
+        manageProductBtn1.setBackground(new java.awt.Color(0, 102, 204));
+        manageProductBtn1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
+        manageProductBtn1.setForeground(new java.awt.Color(0, 0, 0));
+        manageProductBtn1.setText("Administrar productos");
+        manageProductBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageProductBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,14 +110,16 @@ public class MainWindow extends javax.swing.JPanel implements ActionListener{
                         .addComponent(welcomeLb, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(exitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageProductBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(providerComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(211, 211, 211))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(selectLb, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(201, 201, 201))))
+                        .addGap(201, 201, 201))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(manageCodeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(exitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                .addComponent(providerComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(manageProductBtn1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)))
+                        .addGap(211, 211, 211))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,11 +130,13 @@ public class MainWindow extends javax.swing.JPanel implements ActionListener{
                 .addComponent(selectLb, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(providerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(manageProductBtn)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(manageProductBtn1)
+                .addGap(18, 18, 18)
+                .addComponent(manageCodeBtn)
+                .addGap(18, 18, 18)
                 .addComponent(exitBtn)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(72, 72, 72))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -135,19 +151,24 @@ public class MainWindow extends javax.swing.JPanel implements ActionListener{
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void manageProductBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manageProductBtn1ActionPerformed
+
     private void providerComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_providerComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_providerComboBoxActionPerformed
 
-    private void manageProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductBtnActionPerformed
+    private void manageCodeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCodeBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageProductBtnActionPerformed
+    }//GEN-LAST:event_manageCodeBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitBtn;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton manageProductBtn;
+    private javax.swing.JButton manageCodeBtn;
+    private javax.swing.JButton manageProductBtn1;
     private javax.swing.JComboBox<Provider> providerComboBox;
     private javax.swing.JLabel selectLb;
     private javax.swing.JLabel welcomeLb;
@@ -155,21 +176,25 @@ public class MainWindow extends javax.swing.JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-         if (ae.getSource().equals(manageProductBtn)) {
-             
-              Provider p = (Provider)this.providerComboBox.getSelectedItem();
-              if(p!=null){
-                  ManageProductWindow m = new  ManageProductWindow(p);
-              }else{
-                  JOptionPane.showMessageDialog(null,"No existen proveedores");
-              }
-              
-         }
-         
-         if (ae.getSource().equals(exitBtn)) {
-             System.exit(0);
-         }
+        if (ae.getSource().equals(this.manageProductBtn1)) {
+
+            Provider p = (Provider) this.providerComboBox.getSelectedItem();
+            if (p != null) {
+                ManageProductWindow m = new ManageProductWindow(p);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existen proveedores");
+            }
+
+        }
+
+        if (ae.getSource().equals(this.manageCodeBtn)) {
+            ManageCodesWindow m = new ManageCodesWindow();
+        }
         
-         
+        
+        if (ae.getSource().equals(exitBtn)) {
+            System.exit(0);
+        }
+
     }
 }

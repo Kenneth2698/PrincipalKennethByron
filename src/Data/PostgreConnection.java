@@ -57,7 +57,7 @@ public class PostgreConnection {
     public ArrayList<Product> getProducts(Provider pro){
         ArrayList<Product> list = new ArrayList<>();
         
-         String url = "jdbc:postgresql://localhost:5432/Principal";
+        String url = "jdbc:postgresql://localhost:5432/Principal";
         String user = "postgres";
         String password = "1234";
         
@@ -109,4 +109,35 @@ public class PostgreConnection {
             System.err.println(e.getMessage());  
         }
     }
+    
+    public int verifyCode(String code){
+        int output = 0;
+        
+         String url = "jdbc:postgresql://localhost:5432/Principal";
+        String user = "postgres";
+        String password = "1234";
+        
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(url,user,password);
+            java.sql.Statement st = connection.createStatement();
+            String sql = "SELECT verifyCode ('"+code+"') as resultado";
+            ResultSet result = st.executeQuery(sql);
+            System.out.println(result.toString()+" ");
+            while(result.next()){
+                output = result.getInt("resultado");
+            }
+            result.close();
+            st.close();
+            connection.close();
+            
+        }catch(Exception e){
+            
+            System.err.println(e.getMessage());
+        }
+        
+        return output;
+        
+    }
+    
 }

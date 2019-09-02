@@ -5,8 +5,12 @@
  */
 package backendkennethlopezbyronortiz;
 
+import Data.APIClient;
 import GUI.MainWindow;
 import java.awt.Dimension;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import javax.swing.JFrame;
 
 /**
@@ -16,21 +20,37 @@ import javax.swing.JFrame;
 public class BackendKennethLopezByronOrtiz {
 
     
-    public static void main(String[] args) {
-        JFrame jFrame = new JFrame("Sistema administrativo");
+    public static void main(String[] args) throws UnsupportedEncodingException {
+       /*JFrame jFrame = new JFrame("Sistema administrativo");
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         jFrame.setPreferredSize(new Dimension(610, 625));
-
         jFrame.add(new MainWindow());
-    
         jFrame.pack();
-
         jFrame.setLocationRelativeTo(null);
         jFrame.setResizable(false);
-
         jFrame.setVisible(true);
-        
+       
+        */
+        APIClient a = new APIClient();
+        a.a();
+       /*String a = "642639";
+        byte[] encoded = Base64.getEncoder().encodeToString(a.getBytes()).getBytes();
+        String str = new String(encoded, "UTF-8");
+       
+        System.err.println(Base64.getDecoder().decode("NjQyNjM5"));
+      */
+    }
+    public static String cifrarBase64(String a){
+        Base64.Encoder encoder = Base64.getEncoder();
+        String b = encoder.encodeToString(a.getBytes(StandardCharsets.UTF_8) );        
+        return b;
     }
     
+    public static String descifrarBase64(String a){
+        Base64.Decoder decoder = Base64.getDecoder();
+        byte[] decodedByteArray = decoder.decode(a);
+        
+        String b = new String(decodedByteArray);        
+        return b;
+    }
 }

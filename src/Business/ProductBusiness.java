@@ -8,9 +8,6 @@ package Business;
 import Data.PostgreConnection;
 import Domain.Product;
 import Domain.Provider;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
@@ -36,4 +33,8 @@ public class ProductBusiness {
      public void updateProductStatus(int providerI  ,int productId ,int status){
          this.postgreConnection.updateProductStatus(providerI, productId, status);
      }
+     public int verifyCode(String code){
+         return this.postgreConnection.verifyCode(code);
+     }
+     
 }
