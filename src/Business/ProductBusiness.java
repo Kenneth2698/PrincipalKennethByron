@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Data.APIClient;
 import Data.PostgreConnection;
 import Domain.Product;
 import Domain.Provider;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 public class ProductBusiness {
     
     private PostgreConnection postgreConnection;
-    
+    private APIClient api;
     public ProductBusiness(){
-    
         this.postgreConnection = new PostgreConnection();
+        this.api = new APIClient();
     }
     
     public ArrayList<Provider> getProviders(){
@@ -30,11 +31,17 @@ public class ProductBusiness {
      public ArrayList<Product> getProducts(Provider pro){
          return this.postgreConnection.getProducts(pro);
      }
-     public void updateProductStatus(int providerI  ,int productId ,int status){
-         this.postgreConnection.updateProductStatus(providerI, productId, status);
+     public void updateProductStatus(int providerId  ,int productId ,int status){
+         this.postgreConnection.updateProductStatus(providerId, productId, status);
      }
      public int verifyCode(String code){
          return this.postgreConnection.verifyCode(code);
+     }
+     public int getProviderId(String code){
+         return this.postgreConnection.getProviderId(code);
+     }
+     public void transferproducts(int idProvider){
+         this.api.transferProducts(idProvider);
      }
      
 }
