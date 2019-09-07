@@ -21,7 +21,7 @@ public class BackendKennethLopezByronOrtiz {
 
     
     public static void main(String[] args) throws UnsupportedEncodingException {
-       /*JFrame jFrame = new JFrame("Sistema administrativo");
+       JFrame jFrame = new JFrame("Sistema administrativo");
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setPreferredSize(new Dimension(610, 625));
         jFrame.add(new MainWindow());
@@ -30,9 +30,9 @@ public class BackendKennethLopezByronOrtiz {
         jFrame.setResizable(false);
         jFrame.setVisible(true);
        
-        */
+       /*
         APIClient a = new APIClient();
-        a.a();
+        a.transferProducts(1);
        /*String a = "642639";
         byte[] encoded = Base64.getEncoder().encodeToString(a.getBytes()).getBytes();
         String str = new String(encoded, "UTF-8");

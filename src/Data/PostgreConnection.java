@@ -137,7 +137,33 @@ public class PostgreConnection {
         }
         
         return output;
+    }
+    
+    public int getProviderId(String code){
+        int output = 0 ;
+        String url = "jdbc:postgresql://localhost:5432/Principal";
+        String user = "postgres";
+        String password = "1234";
         
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(url,user,password);
+            java.sql.Statement st = connection.createStatement();
+            String sql = "SELECT getProviderId as resultado from getProviderId('"+code+"')";
+            ResultSet result = st.executeQuery(sql);
+            System.out.println(result.toString()+" ");
+            while(result.next()){
+                output = result.getInt("resultado");
+            }
+            result.close();
+            st.close();
+            connection.close();
+            
+        }catch(Exception e){
+            
+            System.err.println(e.getMessage());
+        }
+        return output;
     }
     
 }

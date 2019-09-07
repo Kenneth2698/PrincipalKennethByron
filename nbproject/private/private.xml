@@ -5,7 +5,10 @@
         <group>
             <file>file:/C:/Users/XPC/Documents/NetBeansProjects/BackendKennethLopezByronOrtiz/src/Data/PostgreConnection.java</file>
             <file>file:/C:/Users/XPC/Documents/NetBeansProjects/BackendKennethLopezByronOrtiz/src/Business/ProductBusiness.java</file>
+            <file>file:/C:/Users/XPC/Documents/NetBeansProjects/BackendKennethLopezByronOrtiz/src/Domain/Provider.java</file>
             <file>file:/C:/Users/XPC/Documents/NetBeansProjects/BackendKennethLopezByronOrtiz/src/GUI/ManageCodesWindow.java</file>
+            <file>file:/C:/Users/XPC/Documents/NetBeansProjects/BackendKennethLopezByronOrtiz/src/Data/APIClient.java</file>
+            <file>file:/C:/Users/XPC/Documents/NetBeansProjects/BackendKennethLopezByronOrtiz/src/Domain/Product.java</file>
             <file>file:/C:/Users/XPC/Documents/NetBeansProjects/BackendKennethLopezByronOrtiz/src/GUI/MainWindow.java</file>
             <file>file:/C:/Users/XPC/Documents/NetBeansProjects/BackendKennethLopezByronOrtiz/src/backendkennethlopezbyronortiz/BackendKennethLopezByronOrtiz.java</file>
         </group>

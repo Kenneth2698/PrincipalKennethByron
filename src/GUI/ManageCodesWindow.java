@@ -117,17 +117,19 @@ public class ManageCodesWindow extends javax.swing.JFrame implements ActionListe
        
         String code = this.codeTxt.getText();
         
-        try {
-            int result = this.productBusiness.verifyCode(encrypt(code));
+      //  try {
+            int result = this.productBusiness.verifyCode(code);// poner encrypt
+            //encrypt(code)
             switch(result){
                 case 0:
                     JOptionPane.showMessageDialog(null,"Su código es invalido");
                 break;
                 
                 case 1:
+                    int idProver = this.productBusiness.getProviderId(code);
+                    System.err.println(idProver+" PROVEEDOR");
+                    this.productBusiness.transferproducts(idProver);
                     JOptionPane.showMessageDialog(null,"Código correcto");
-                    
-                    //obtener productos
                 break;
                 
                 case 2:
@@ -135,9 +137,9 @@ public class ManageCodesWindow extends javax.swing.JFrame implements ActionListe
                 break;
             }
             
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(ManageCodesWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      //  } catch (UnsupportedEncodingException ex) {
+      //      Logger.getLogger(ManageCodesWindow.class.getName()).log(Level.SEVERE, null, ex);
+     //   }
     }//GEN-LAST:event_acceptBtnActionPerformed
 
     /**
