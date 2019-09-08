@@ -68,12 +68,7 @@ public class APIClient {
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
-
-            String input = "{"+idProvider+"}";
-                
-            System.err.println(input);
             OutputStream os = conn.getOutputStream();
-           // os.write(input.getBytes());
             os.flush();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(
